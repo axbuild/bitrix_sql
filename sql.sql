@@ -1,6 +1,5 @@
-#BITRIX24
-
 /*
+BITRIX24
 USER ACTIVITY BY YEAR AND MONTH
 */
 SELECT 
@@ -47,3 +46,17 @@ SELECT
 FROM
 	b_user
 GROUP BY YEAR(DATE_REGISTER), MONTH(DATE_REGISTER)
+/*
+COUNT DELETED MESSAGES
+*/
+SELECT 
+	YEAR(b_im_message.DATE_CREATE) AS year,
+	COUNT(b_im_message.ID) 
+FROM 
+	b_im_message, b_im_message_param
+WHERE 
+	b_im_message.ID=b_im_message_param.MESSAGE_ID
+AND
+	b_im_message_param.PARAM_NAME = 'IS_DELETED'
+GROUP BY 
+	YEAR(b_im_message.DATE_CREATE)

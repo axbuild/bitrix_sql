@@ -60,3 +60,10 @@ AND
 	b_im_message_param.PARAM_NAME = 'IS_DELETED'
 GROUP BY 
 	YEAR(b_im_message.DATE_CREATE)
+/*
+CONNECTIONS
+*/
+SHOW STATUS WHERE variable_name LIKE "Threads_%" OR variable_name = "Connections"
+SELECT /*+ MAX_EXECUTION_TIME(1000) */ status, count(*) FROM articles GROUP BY status ORDER BY status;
+show variables like '%log%';
+SHOW INDEXES FROM table_name;

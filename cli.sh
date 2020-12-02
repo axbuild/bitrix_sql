@@ -22,3 +22,10 @@ yum install epel-release
 yum install apachetop
 apachetop -H 100
 apachetop -T 60
+
+
+#stress testing
+#https://docs.locust.io/en/stable/what-is-locust.html
+yum install python36
+yum install pip3
+sudo yum install python36u-devel

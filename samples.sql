@@ -118,3 +118,36 @@ FROM
         JOIN
     weather w2 ON DATEDIFF(w1.recordDate, w2.recordDate) = 1
         AND w1.Temperature > w2.Temperature
+	
+	
+	
+	
+	
+	
+SELECT
+    T.class class
+FROM (
+    SELECT
+        C.class,
+        Count(C.class) total
+    FROM (
+        SELECT 
+			class,
+			Count(student) total
+		FROM courses 
+		GROUP BY student
+    ) AS C        
+    GROUP BY C.class) AS T
+WHERE T.total >= 5
+
+
+
+SELECT 
+    * 
+FROM
+    Cinema
+WHERE
+    id % 2 <> 0
+AND
+    description <> 'boring'
+ORDER BY rating DESC

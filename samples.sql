@@ -151,3 +151,21 @@ WHERE
 AND
     description <> 'boring'
 ORDER BY rating DESC
+
+
+SELECT id, 
+	sum(case when month = 'jan' then revenue else null end) Jan_Revenue,
+	sum(case when month = 'feb' then revenue else null end) Feb_Revenue,
+	sum(case when month = 'mar' then revenue else null end) Mar_Revenue,
+	sum(case when month = 'apr' then revenue else null end) Apr_Revenue,
+	sum(case when month = 'may' then revenue else null end) May_Revenue,
+	sum(case when month = 'jun' then revenue else null end) Jun_Revenue,
+	sum(case when month = 'jul' then revenue else null end) Jul_Revenue,
+	sum(case when month = 'aug' then revenue else null end) Aug_Revenue,
+	sum(case when month = 'sep' then revenue else null end) Sep_Revenue,
+	sum(case when month = 'oct' then revenue else null end) Oct_Revenue,
+	sum(case when month = 'nov' then revenue else null end) Nov_Revenue,
+	sum(case when month = 'dec' then revenue else null end) Dec_Revenue
+FROM department
+GROUP BY id
+ORDER BY id

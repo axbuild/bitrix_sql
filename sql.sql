@@ -67,3 +67,21 @@ SHOW STATUS WHERE variable_name LIKE "Threads_%" OR variable_name = "Connections
 SELECT /*+ MAX_EXECUTION_TIME(1000) */ status, count(*) FROM articles GROUP BY status ORDER BY status;
 show variables like '%log%';
 SHOW INDEXES FROM table_name;
+
+
+/*b_bp_track count row by document*/
+SELECT
+	*
+FROM (
+	SELECT
+		T2.DOCUMENT_ID EL,
+		COUNT(T1.ID) total
+	FROM 
+		b_bp_tracking T1
+	LEFT JOIN
+		b_bp_workflow_instance T2
+	ON T1.WORKFLOW_ID = T2.ID
+	GROUP BY T1.WORKFLOW_ID
+	ORDER BY T2.DOCUMENT_ID DESC
+) T12
+WHERE T12.total > 1000
